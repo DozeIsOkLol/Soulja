@@ -19,7 +19,6 @@
     "Failure": [255, 80, 80],
     "SuccessFlash": [255, 200, 240]
   },
-  {
   "DefaultPurple": {
     "Primary": [170, 70, 255],
     "Background": [20, 20, 30],
