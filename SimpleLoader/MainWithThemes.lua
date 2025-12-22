@@ -1,14 +1,8 @@
 --[[
-
-    SouljaLoader v2.2 (Hardened Edition)
-
-    This version incorporates final hardening and developer-friendly refinements,
-    making it a truly robust and maintainable template.
-
-    - Theme system is now protected against accidental mutation.
-    - Added active theme logging for easier debugging.
-    - Includes an optional, commented-out executor guard for clarity.
-
+    License:
+    This project is open source and free to use. You are permitted to modify,
+    reuse, and redistribute this script for any purpose. Credit is appreciated but
+    not required. Authored by the SouljaWitchSrc community.
 ]]
 
 --================================================================================--
