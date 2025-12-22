@@ -1,3 +1,4 @@
+
 <div align="center">
 
 SOUJA HUB
@@ -12,15 +13,8 @@ A Modern, Feature-Rich, and Highly Customizable Script Loader for Roblox.
 <img src="https://img.shields.io/badge/Status-Active-success.svg" alt="Status: Active">
 </p>
 
-<!--
-IMPORTANT: For the best result, replace the URL below with a screenshot or GIF of your loader!
-A good visual is the most important part of a README.
--->
-
 <p align="center">
-<img 
-  src=""<img width="842" height="523" alt="image" src="https://github.com/user-attachments/assets/105e8d5a-4564-4957-b6a5-b92ffdb1e808" />"
-  alt="Souja Hub Showcase" width="700"/>
+<img src="https://github.com/user-attachments/assets/105e8d5a-4564-4957-b6a5-b92ffdb1e808" alt="Souja Hub Showcase" width="700"/>
 </p>
 
 
