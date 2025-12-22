@@ -1,0 +1,9 @@
+[Still in Beta] [v1.9]
+    - [CORE] Based entirely on the user-provided v4.3 script, preserving the original UI.
+    - [FIXED] Script is now complete and unabridged. No code has been condensed or removed.
+    - [REMOVED] The unpopular dot-grid background feature has been completely removed.
+    - [ADDED] Feature Toggles: All new features can be individually enabled or disabled in the Config.
+    - [ADDED] Remote Status Control: A remote kill switch or maintenance message.
+    - [ADDED] Changelog Viewer: A "What's New?" button to display update notes.
+    - [ADDED] Social Links: Clickable icons to copy community links.
+    - [ADDED] Audio Visualization: Subtle border pulse that reacts to UI sounds.
