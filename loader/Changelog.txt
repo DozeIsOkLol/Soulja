@@ -1,12 +1,11 @@
-[Still in Beta] [v2.3]
-   - [FIX] Removed the non-functional 'ParticleEmitter' from the UI. It was dead
-      code as particles do not render inside ScreenGuis. This cleans up the script
-      and removes misleading function calls.
-    - [FIX] Patched a critical memory leak in the 'RenderStepped' event. The connection
-      is now properly disconnected when the loader finishes or is destroyed, preventing
-      connections from stacking on re-execution.
-    - [IMPROVEMENT] Hardened the whitelist authentication logic. It now checks for an
-      exact UserID match on each line, preventing false positives where one ID is a
-      substring of another (e.g., '123' matching '51234').
-    - [FORMATTING] Performed a full formatting pass to ensure maximum readability,
-      with logical code blocks clearly separated for easier debugging and modification.
+[Still in Beta] 
+    Changelog v2.8:
+    - [ARCHITECTURE] Replaced `SafeHttpGet` with `RobustHttpGet`, which automatically
+      retries failed HTTP requests. This makes the loader highly resilient to
+      temporary network errors.
+    - [IMPROVEMENT] The main ScreenGui is now parented to the PlayerGui immediately
+      at the start of UI creation, following best practices to prevent any potential
+      engine race conditions with animations.
+    - [IMPROVEMENT] Enhanced error logging for script execution to explicitly state
+      which URL failed to download, aiding in faster debugging.
+    - [FEATURE] Implemented a multi-game loading system with a universal fallback.
