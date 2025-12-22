@@ -1,62 +1,86 @@
 {
-  "SolarFlareOrange": {
-    "Primary": [255, 120, 0],
-    "Background": [30, 25, 20],
-    "BackgroundGradient": [50, 40, 30],
-    "Text": [255, 255, 255],
-    "MutedText": [150, 140, 130],
-    "ProgressBackground": [40, 35, 30],
-    "Failure": [255, 80, 80],
-    "SuccessFlash": [255, 230, 200]
-  },
-  "CyberpunkPink": {
-    "Primary": [255, 0, 180],
-    "Background": [20, 10, 40],
-    "BackgroundGradient": [40, 20, 60],
-    "Text": [255, 255, 255],
-    "MutedText": [150, 120, 180],
-    "ProgressBackground": [30, 20, 50],
-    "Failure": [255, 80, 80],
-    "SuccessFlash": [255, 200, 240]
-  },
   "DefaultPurple": {
-    "Primary": [170, 70, 255],
-    "Background": [20, 20, 30],
-    "BackgroundGradient": [35, 35, 50],
-    "Text": [255, 255, 255],
-    "MutedText": [120, 125, 135],
-    "ProgressBackground": [30, 32, 38],
-    "Failure": [255, 80, 80],
-    "SuccessFlash": [255, 255, 255]
+    "Primary": [170, 70, 255], "Background": [20, 20, 30], "BackgroundGradient": [35, 35, 50], "Text": [255, 255, 255], "MutedText": [120, 125, 135], "ProgressBackground": [30, 32, 38], "Failure": [255, 80, 80], "SuccessFlash": [255, 255, 255]
   },
   "OceanBlue": {
-    "Primary": [0, 150, 255],
-    "Background": [15, 25, 40],
-    "BackgroundGradient": [25, 40, 60],
-    "Text": [255, 255, 255],
-    "MutedText": [110, 130, 150],
-    "ProgressBackground": [25, 35, 45],
-    "Failure": [255, 100, 100],
-    "SuccessFlash": [200, 240, 255]
+    "Primary": [0, 150, 255], "Background": [15, 25, 40], "BackgroundGradient": [25, 40, 60], "Text": [255, 255, 255], "MutedText": [110, 130, 150], "ProgressBackground": [25, 35, 45], "Failure": [255, 100, 100], "SuccessFlash": [200, 240, 255]
   },
   "CrimsonRed": {
-    "Primary": [220, 20, 60],
-    "Background": [30, 15, 20],
-    "BackgroundGradient": [50, 25, 35],
-    "Text": [255, 255, 255],
-    "MutedText": [150, 120, 130],
-    "ProgressBackground": [40, 25, 30],
-    "Failure": [255, 80, 80],
-    "SuccessFlash": [255, 220, 220]
+    "Primary": [220, 20, 60], "Background": [30, 15, 20], "BackgroundGradient": [50, 25, 35], "Text": [255, 255, 255], "MutedText": [150, 120, 130], "ProgressBackground": [40, 25, 30], "Failure": [255, 80, 80], "SuccessFlash": [255, 220, 220]
   },
   "ForestGreen": {
-    "Primary": [34, 139, 34],
-    "Background": [20, 30, 25],
-    "BackgroundGradient": [35, 50, 45],
-    "Text": [255, 255, 255],
-    "MutedText": [120, 150, 130],
-    "ProgressBackground": [30, 40, 35],
-    "Failure": [255, 100, 80],
-    "SuccessFlash": [220, 255, 220]
+    "Primary": [34, 139, 34], "Background": [20, 30, 25], "BackgroundGradient": [35, 50, 45], "Text": [255, 255, 255], "MutedText": [120, 150, 130], "ProgressBackground": [30, 40, 35], "Failure": [255, 100, 80], "SuccessFlash": [220, 255, 220]
+  },
+  "SolarFlareOrange": {
+    "Primary": [255, 120, 0], "Background": [30, 25, 20], "BackgroundGradient": [50, 40, 30], "Text": [255, 255, 255], "MutedText": [150, 140, 130], "ProgressBackground": [40, 35, 30], "Failure": [255, 80, 80], "SuccessFlash": [255, 230, 200]
+  },
+  "CyberpunkPink": {
+    "Primary": [255, 0, 180], "Background": [20, 10, 40], "BackgroundGradient": [40, 20, 60], "Text": [255, 255, 255], "MutedText": [150, 120, 180], "ProgressBackground": [30, 20, 50], "Failure": [255, 80, 80], "SuccessFlash": [255, 200, 240]
+  },
+  "Synthwave": {
+    "Primary": [0, 255, 255], "Background": [25, 0, 50], "BackgroundGradient": [45, 10, 70], "Text": [255, 255, 255], "MutedText": [150, 140, 180], "ProgressBackground": [35, 10, 60], "Failure": [255, 80, 80], "SuccessFlash": [200, 255, 255]
+  },
+  "Arctic": {
+    "Primary": [100, 200, 255], "Background": [25, 30, 35], "BackgroundGradient": [45, 50, 55], "Text": [255, 255, 255], "MutedText": [130, 140, 150], "ProgressBackground": [35, 40, 45], "Failure": [255, 80, 80], "SuccessFlash": [220, 240, 255]
+  },
+  "Gold": {
+    "Primary": [255, 215, 0], "Background": [30, 25, 10], "BackgroundGradient": [50, 45, 20], "Text": [255, 255, 255], "MutedText": [150, 140, 100], "ProgressBackground": [40, 35, 20], "Failure": [255, 80, 80], "SuccessFlash": [255, 255, 200]
+  },
+  "Onyx": {
+    "Primary": [220, 220, 220], "Background": [10, 10, 10], "BackgroundGradient": [30, 30, 30], "Text": [255, 255, 255], "MutedText": [150, 150, 150], "ProgressBackground": [40, 40, 40], "Failure": [255, 80, 80], "SuccessFlash": [255, 255, 255]
+  },
+  "Discord": {
+    "Primary": [114, 137, 218], "Background": [35, 39, 42], "BackgroundGradient": [44, 47, 51], "Text": [255, 255, 255], "MutedText": [153, 170, 181], "ProgressBackground": [54, 57, 63], "Failure": [255, 80, 80], "SuccessFlash": [255, 255, 255]
+  },
+  "Spotify": {
+    "Primary": [30, 215, 96], "Background": [18, 18, 18], "BackgroundGradient": [40, 40, 40], "Text": [255, 255, 255], "MutedText": [179, 179, 179], "ProgressBackground": [83, 83, 83], "Failure": [255, 80, 80], "SuccessFlash": [180, 255, 200]
+  },
+  "Dracula": {
+    "Primary": [189, 147, 249], "Background": [40, 42, 54], "BackgroundGradient": [50, 52, 64], "Text": [248, 248, 242], "MutedText": [98, 114, 164], "ProgressBackground": [68, 71, 90], "Failure": [255, 80, 80], "SuccessFlash": [220, 200, 255]
+  },
+  "Sunset": {
+    "Primary": [255, 95, 109], "Background": [20, 33, 61], "BackgroundGradient": [40, 53, 81], "Text": [252, 163, 17], "MutedText": [160, 100, 110], "ProgressBackground": [30, 43, 71], "Failure": [255, 80, 80], "SuccessFlash": [255, 200, 200]
+  },
+  "Lavender": {
+    "Primary": [200, 160, 220], "Background": [40, 30, 50], "BackgroundGradient": [60, 50, 70], "Text": [240, 240, 240], "MutedText": [150, 130, 160], "ProgressBackground": [50, 40, 60], "Failure": [255, 80, 80], "SuccessFlash": [230, 210, 240]
+  },
+  "Emerald": {
+    "Primary": [80, 200, 120], "Background": [20, 40, 30], "BackgroundGradient": [30, 60, 45], "Text": [255, 255, 255], "MutedText": [120, 160, 140], "ProgressBackground": [25, 50, 38], "Failure": [255, 80, 80], "SuccessFlash": [200, 255, 220]
+  },
+  "Ruby": {
+    "Primary": [224, 17, 95], "Background": [50, 10, 25], "BackgroundGradient": [70, 20, 40], "Text": [255, 255, 255], "MutedText": [180, 100, 120], "ProgressBackground": [60, 15, 33], "Failure": [255, 80, 80], "SuccessFlash": [255, 200, 220]
+  },
+  "Sapphire": {
+    "Primary": [15, 82, 186], "Background": [10, 20, 40], "BackgroundGradient": [20, 35, 60], "Text": [255, 255, 255], "MutedText": [100, 120, 160], "ProgressBackground": [15, 28, 50], "Failure": [255, 80, 80], "SuccessFlash": [200, 220, 255]
+  },
+  "Joker": {
+    "Primary": [46, 204, 113], "Background": [44, 62, 80], "BackgroundGradient": [52, 73, 94], "Text": [236, 240, 241], "MutedText": [149, 165, 166], "ProgressBackground": [34, 47, 62], "Failure": [231, 76, 60], "SuccessFlash": [170, 255, 200]
+  },
+  "Slate": {
+    "Primary": [128, 140, 150], "Background": [35, 40, 45], "BackgroundGradient": [50, 55, 60], "Text": [255, 255, 255], "MutedText": [100, 110, 120], "ProgressBackground": [43, 48, 53], "Failure": [200, 80, 80], "SuccessFlash": [220, 225, 230]
+  },
+  "Mocha": {
+    "Primary": [200, 180, 160], "Background": [40, 30, 25], "BackgroundGradient": [60, 45, 38], "Text": [240, 240, 235], "MutedText": [140, 130, 120], "ProgressBackground": [50, 38, 32], "Failure": [255, 80, 80], "SuccessFlash": [230, 220, 210]
+  },
+  "Mint": {
+    "Primary": [100, 255, 180], "Background": [20, 40, 35], "BackgroundGradient": [30, 60, 50], "Text": [255, 255, 255], "MutedText": [120, 170, 150], "ProgressBackground": [25, 50, 43], "Failure": [255, 80, 80], "SuccessFlash": [220, 255, 240]
+  },
+  "Tangerine": {
+    "Primary": [240, 130, 40], "Background": [40, 30, 15], "BackgroundGradient": [60, 45, 25], "Text": [255, 255, 255], "MutedText": [160, 140, 110], "ProgressBackground": [50, 38, 20], "Failure": [255, 80, 80], "SuccessFlash": [255, 220, 180]
+  },
+  "RoseGold": {
+    "Primary": [220, 170, 150], "Background": [50, 30, 30], "BackgroundGradient": [70, 45, 45], "Text": [255, 255, 255], "MutedText": [180, 150, 140], "ProgressBackground": [60, 38, 38], "Failure": [255, 80, 80], "SuccessFlash": [240, 220, 215]
+  },
+  "Matrix": {
+    "Primary": [0, 255, 0], "Background": [0, 10, 0], "BackgroundGradient": [0, 25, 0], "Text": [200, 255, 200], "MutedText": [0, 150, 0], "ProgressBackground": [0, 40, 0], "Failure": [255, 0, 0], "SuccessFlash": [200, 255, 200]
+  },
+  "Bubblegum": {
+    "Primary": [255, 105, 180], "Background": [50, 20, 40], "BackgroundGradient": [70, 30, 60], "Text": [255, 255, 255], "MutedText": [200, 130, 160], "ProgressBackground": [60, 25, 50], "Failure": [255, 80, 80], "SuccessFlash": [255, 210, 230]
+  },
+  "Royal": {
+    "Primary": [130, 110, 220], "Background": [20, 15, 40], "BackgroundGradient": [35, 25, 60], "Text": [255, 215, 0], "MutedText": [150, 140, 190], "ProgressBackground": [28, 20, 50], "Failure": [255, 80, 80], "SuccessFlash": [230, 220, 255]
+  },
+  "Toxicity": {
+    "Primary": [150, 255, 0], "Background": [20, 30, 10], "BackgroundGradient": [35, 50, 20], "Text": [255, 255, 255], "MutedText": [140, 180, 100], "ProgressBackground": [28, 40, 15], "Failure": [255, 80, 80], "SuccessFlash": [230, 255, 180]
   }
 }
