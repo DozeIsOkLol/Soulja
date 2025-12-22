@@ -1,10 +1,12 @@
-[Still in Beta] [v2.0]
-    - [FIXED] Corrected variable assignment in the `runPreChecks` function 
-      to prevent the "attempt to index boolean" error during the status check.
-
-    - [COMBINED] Merges the feature set of v5.8 with the readable structure of v3.0.
-
-    - [FULL-FEATURED] Includes all toggleable features: Status Check, Whitelist, 
-      Version Check, Changelog, and Audio Visualizer.
-
-    - [READABILITY] Maintains clear, well-spaced, and commented code.
+[Still in Beta] [v2.3]
+   - [FIX] Removed the non-functional 'ParticleEmitter' from the UI. It was dead
+      code as particles do not render inside ScreenGuis. This cleans up the script
+      and removes misleading function calls.
+    - [FIX] Patched a critical memory leak in the 'RenderStepped' event. The connection
+      is now properly disconnected when the loader finishes or is destroyed, preventing
+      connections from stacking on re-execution.
+    - [IMPROVEMENT] Hardened the whitelist authentication logic. It now checks for an
+      exact UserID match on each line, preventing false positives where one ID is a
+      substring of another (e.g., '123' matching '51234').
+    - [FORMATTING] Performed a full formatting pass to ensure maximum readability,
+      with logical code blocks clearly separated for easier debugging and modification.
