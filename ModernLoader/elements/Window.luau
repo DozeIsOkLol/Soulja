@@ -51,6 +51,25 @@ function Window:AddToggle(options)
     return toggle
 end
 
+-- Inside elements/Window.luau, at the bottom with the other :Add... methods
+
+function Window:AddTabGroup()
+    local tabGroup = MainLibrary._components.TabGroup.new(MainLibrary)
+    tabGroup.Frame.Parent = self.Content
+    return tabGroup
+end
+
+function Window:AddLabel(options)
+    local label = MainLibrary._components.Label.new(options)
+    label.Frame.Parent = self.Content
+    return label
+end
+
+function Window:AddSlider(options)
+    local slider = MainLibrary._components.Slider.new(options)
+    slider.Frame.Parent = self.Content
+    return slider
+end
 -- Add more methods here for new elements you create, like :AddEditor()
 
 return Window
