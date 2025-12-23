@@ -1,19 +1,15 @@
 --[[
-    Element: Window.luau (V3.0 - Library Enabled)
-    Description: The core window component. It now contains the fluent API
-    to add other elements, making it the central object for UI creation.
+    Element: Window.luau (V3.1 - Full API)
+    Description: The core window component with the complete, final API for adding all elements.
 ]]
 
 local Window = {}
 Window.__index = Window
 
--- This will be set to the main library object when a window is created.
 local MainLibrary = nil
 
 function Window.new(options, libraryRef)
     local self = setmetatable({}, Window)
-    
-    -- Store the reference to the main library so this window can create other elements.
     MainLibrary = libraryRef
     
     local screenGui = Instance.new("ScreenGui"); screenGui.Name = "SouljaUI_Window"; screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global; screenGui.ResetOnSpawn = false; screenGui.DisplayOrder = 99998
@@ -23,20 +19,19 @@ function Window.new(options, libraryRef)
     self.Content = Instance.new("Frame", self.Frame); self.Content.Name = "Content"; self.Content.Size = UDim2.new(1, -20, 1, -40); self.Content.Position = UDim2.fromOffset(10, 35); self.Content.BackgroundTransparency = 1
     self.Layout = Instance.new("UIListLayout", self.Content); self.Layout.Padding = UDim.new(0, 10);
     
-    -- Use the Dragger component from the pre-loaded library components.
     MainLibrary._components.Dragger.new(self.Frame, self.Header)
     screenGui.Parent = game:GetService("CoreGui")
     return self
 end
 
 -- =============================================================================
--- Fluent API: These are the methods you call on a window object.
+-- [FIXED] The Complete Fluent API
 -- =============================================================================
 
 function Window:AddButton(options)
     local button = MainLibrary._components.Button.new(options)
     button.Frame.Parent = self.Content
-    return button -- Return for chaining or storing
+    return button
 end
 
 function Window:AddInput(options)
@@ -51,14 +46,6 @@ function Window:AddToggle(options)
     return toggle
 end
 
--- Inside elements/Window.luau, at the bottom with the other :Add... methods
-
-function Window:AddTabGroup()
-    local tabGroup = MainLibrary._components.TabGroup.new(MainLibrary)
-    tabGroup.Frame.Parent = self.Content
-    return tabGroup
-end
-
 function Window:AddLabel(options)
     local label = MainLibrary._components.Label.new(options)
     label.Frame.Parent = self.Content
@@ -70,6 +57,11 @@ function Window:AddSlider(options)
     slider.Frame.Parent = self.Content
     return slider
 end
--- Add more methods here for new elements you create, like :AddEditor()
+
+function Window:AddTabGroup()
+    local tabGroup = MainLibrary._components.TabGroup.new(MainLibrary)
+    tabGroup.Frame.Parent = self.Content
+    return tabGroup
+end
 
 return Window
