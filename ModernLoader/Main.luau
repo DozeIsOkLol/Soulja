@@ -1,6 +1,5 @@
 --[[
-    Application Core: Main.luau (V3.0 - Production)
-    Description: Final, clean version of the main application.
+    Application Core: Main.luau (V3.2 - Final Verified)
 ]]
 
 local Dependencies = {
@@ -29,7 +28,7 @@ function MainApp:Init()
     for name, url in pairs(Dependencies) do
         local module = fetchModule(url)
         if not module then
-            warn("MainApp: A critical dependency failed to load:", name, "from", url, ". Aborting.")
+            warn("MainApp: CRITICAL FAILURE loading dependency:", name, "from", url, ". Aborting.")
             return
         end
         Modules[name] = module
