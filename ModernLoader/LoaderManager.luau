@@ -1,13 +1,12 @@
 --[[
-    Controller: LoaderManager.luau
-    Description: Fetches the 'loader.luau' UI module and uses it to execute
-    a loading sequence. This script represents the core logic of your tool.
+    Controller: LoaderManager.luau (V1.1)
+    Description: Corrected version that fixes the 'attempt to call a table value' error.
 ]]
 
 -- Configuration: Point this to the RAW URL of your 'loader.luau' file on GitHub.
 local LOADER_UI_URL = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/refs/heads/main/ModernLoader/Loader.luau"
 
--- Utility to fetch and compile a script from a URL.
+-- Utility to fetch and execute a module from a URL.
 local function fetchModule(url)
     local success, content = pcall(game.HttpGet, game, url)
     if not success or not content then
@@ -15,13 +14,16 @@ local function fetchModule(url)
         return nil
     end
 
-    local success, compiled = pcall(loadstring(content))
-    if not success or not compiled then
-        warn("Failed to compile module:", url, compiled)
+    -- pcall executes the function created by loadstring.
+    -- The 'result' is the value returned by the module script (the 'Loader' table).
+    local success, result = pcall(loadstring(content))
+    if not success or not result then
+        warn("Failed to execute or compile module:", url, result)
         return nil
     end
     
-    return compiled()
+    -- [FIXED] Return the result directly. Do not call it.
+    return result
 end
 
 -- Main execution
@@ -45,7 +47,6 @@ task.wait(1)
 loaderWindow:AddLabel("Checking dependencies...", "Info")
 loaderWindow:SetProgress(0.3)
 
--- Pretend to load other scripts/assets here
 task.wait(1.5)
 loaderWindow:AddLabel("Anti-cheat bypass loaded.", "Neutral")
 loaderWindow:SetProgress(0.6)
@@ -68,5 +69,4 @@ task.wait(1.5)
 -- 3. Close the loader and hand off to the main script
 loaderWindow:Close()
 
--- At this point, you would typically run the main code for your tool.
 print("Loader finished. Main script would run now.")
