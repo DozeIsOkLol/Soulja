@@ -17,7 +17,10 @@ local Dependencies = {
     Input = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Input.luau",
     Toggle = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Toggle.luau",
     Dragger = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Dragger.luau"
-    -- Add any new elements you create here
+    Tab = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Tab.luau",
+    TabGroup = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/TabGroup.luau",
+    Label = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Label.luau",
+    Slider = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Slider.luau"
 }
 
 local function fetchModule(url)
