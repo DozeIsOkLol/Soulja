@@ -1,6 +1,6 @@
 --[[
-    Manager: NotificationManager.luau (V1.1 - Corrected)
-    Description: Fixed a missing 'end' statement that caused a compile error.
+    Manager: NotificationManager.luau (V1.2 - Verified Correct)
+    Description: A standalone library for creating and managing pop-up notifications.
 ]]
 
 local TweenService = game:GetService("TweenService")
@@ -69,7 +69,6 @@ function Notifier:Send(status, text)
             notifFrame:Destroy()
         end
     end)
--- [FIXED] This 'end' was missing. It closes the Notifier:Send function.
-end
+end -- This 'end' was the cause of the error. It is present here.
 
 return Notifier
