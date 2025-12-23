@@ -1,6 +1,7 @@
 --[[
-    Controller: LoaderManager.luau (V2.1 - Robust Fetching)
-    Description: Corrected version with a safer module fetching function.
+    Controller: LoaderManager.luau (V2.2 - Final)
+    Fix: Added an infinite loop to prevent the executor from garbage
+    collecting the UI after the script finishes.
 ]]
 
 local Config = {
@@ -8,23 +9,13 @@ local Config = {
     MainApp_URL = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/Main.luau"
 }
 
--- [FIXED] Using the new, robust fetchModule function
 local function fetchModule(url)
     local success, content = pcall(game.HttpGet, game, url)
-    if not success or not content then
-        warn("FETCH FAILED:", url, content)
-        return nil
-    end
+    if not success or not content then warn("FETCH FAILED:", url, content); return nil end
     local compiledFunc, compileError = loadstring(content)
-    if not compiledFunc then
-        warn("COMPILE FAILED:", url, compileError)
-        return nil
-    end
+    if not compiledFunc then warn("COMPILE FAILED:", url, compileError); return nil end
     local success, result = pcall(compiledFunc)
-    if not success then
-        warn("EXECUTION FAILED:", url, result)
-        return nil
-    end
+    if not success then warn("EXECUTION FAILED:", url, result); return nil end
     return result
 end
 
@@ -52,11 +43,19 @@ if MainApp and MainApp.Init then
     loaderWindow:AddLabel("Initializing...", "Info")
     loaderWindow:SetProgress(1.0)
     task.wait(1)
+    
     MainApp:Init()
+    
     loaderWindow:Close()
-    print("Bootstrap complete. Main application is now running.")
+    
+    print("Bootstrap complete. Main application is now visible.")
 else
     loaderWindow:AddLabel("FATAL: Main application failed to load.", "Error")
     task.wait(3)
     loaderWindow:Close()
+end
+
+-- [FIX] This infinite loop prevents the executor from cleaning up the UI.
+while true do
+    task.wait(1)
 end
