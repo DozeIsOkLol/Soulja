@@ -1,6 +1,6 @@
 --[[
-    Application Core: Main.luau (V2 - Full Library)
-    Description: Fetches and demonstrates all created UI elements.
+    Application Core: Main.luau (V2.1 - Robust Fetching)
+    Description: Corrected version with a safer module fetching function.
 ]]
 
 local Dependencies = {
@@ -12,18 +12,29 @@ local Dependencies = {
     NotificationManager = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/NotificationManager.luau"
 }
 
+-- [FIXED] Using the new, robust fetchModule function
 local function fetchModule(url)
     local success, content = pcall(game.HttpGet, game, url)
-    if not success or not content then print("Failed to get", url) return nil end
-    local success, result = pcall(loadstring(content))
-    if not success or not result then print("Failed to run", url) return nil end
+    if not success or not content then
+        warn("FETCH FAILED:", url, content)
+        return nil
+    end
+    local compiledFunc, compileError = loadstring(content)
+    if not compiledFunc then
+        warn("COMPILE FAILED:", url, compileError)
+        return nil
+    end
+    local success, result = pcall(compiledFunc)
+    if not success then
+        warn("EXECUTION FAILED:", url, result)
+        return nil
+    end
     return result
 end
 
 local MainApp = {}
 
 function MainApp:Init()
-    -- 1. Fetch all dependencies
     local Window = fetchModule(Dependencies.Window)
     local Button = fetchModule(Dependencies.Button)
     local Input = fetchModule(Dependencies.Input)
@@ -36,19 +47,15 @@ function MainApp:Init()
         return
     end
 
-    -- 2. Initialize managers
     local Notifier = NotificationManager.new()
 
-    -- 3. Create the main window
     local mainWindow = Window.new({
         Title = "Project Soulja - Full UI",
-        Size = Vector2.new(520, 420) -- Slightly taller for more elements
+        Size = Vector2.new(520, 420)
     })
     
-    -- 4. [NEW] Make the window draggable using the Dragger module
     Dragger.new(mainWindow.Frame, mainWindow.Header)
 
-    -- 5. Create instances of all our elements
     local scriptInput = Input.new({
         PlaceholderText = "print('Hello, World!')"
     })
@@ -74,7 +81,6 @@ function MainApp:Init()
         end
     })
 
-    -- 6. Add the elements to the window
     mainWindow:Add(scriptInput)
     mainWindow:Add(autoExecute)
     mainWindow:Add(executeButton)
