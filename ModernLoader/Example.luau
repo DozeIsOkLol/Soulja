@@ -1,47 +1,36 @@
 -- =============================================================================
--- Project Soulja UI Library - Example Usage
+-- Project Soulja UI Library - V2 Showcase
 -- =============================================================================
 
--- 1. Load the main library file from GitHub. This one line gives you everything.
 local SouljaUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/UILibrary.luau"))()
 
-if not SouljaUI then
-    warn("SouljaUI failed to load. Aborting example.")
-    return
-end
+if not SouljaUI then return end
 
--- 2. Create the main window.
 local window = SouljaUI:CreateWindow({
-    Title = "SouljaUI Showcase",
-    Size = Vector2.new(480, 320)
+    Title = "SouljaUI Showcase (Tabs!)",
+    Size = Vector2.new(500, 350)
 })
 
--- 3. Add elements to the window using the fluent API.
-window:AddToggle({
-    Text = "Enable Fly",
-    Default = false,
-    Callback = function(value)
-        print("Fly is now:", value)
-    end
-})
+-- Add a tab group to the window
+local tabGroup = window:AddTabGroup()
 
-local nameInput = window:AddInput({
-    PlaceholderText = "Enter your username..."
-})
+-- Add the first tab and get its page frame
+local mainPage = tabGroup:AddTab({ Text = "Main" })
 
-window:AddButton({
-    Text = "Greet",
-    Callback = function()
-        local name = nameInput:GetText()
-        if name and #name > 0 then
-            print("Hello, " .. name .. "!")
-        else
-            print("Please enter a name.")
-        end
-    end
-})
+-- Add elements to the first page
+local label = SouljaUI._components.Label.new({ Text = "Main Features" })
+label.Frame.Parent = mainPage
+local flyToggle = SouljaUI._components.Toggle.new({ Text = "Enable Fly" })
+flyToggle.Frame.Parent = mainPage
 
--- This script must not end, or the UI will be garbage collected.
-while true do
-    task.wait(1)
-end
+-- Add the second tab and get its page frame
+local settingsPage = tabGroup:AddTab({ Text = "Settings" })
+
+-- Add elements to the second page
+local speedSlider = SouljaUI._components.Slider.new({ Text = "WalkSpeed", Min = 16, Max = 200, Default = 16 })
+speedSlider.Frame.Parent = settingsPage
+local fovSlider = SouljaUI._components.Slider.new({ Text = "FOV", Min = 70, Max = 120, Default = 80 })
+fovSlider.Frame.Parent = settingsPage
+
+-- The script must not end
+while true do task.wait(1) end
