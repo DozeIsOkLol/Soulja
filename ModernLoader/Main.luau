@@ -1,6 +1,7 @@
 --[[
-    Application Core: Main.luau (V2.1 - Robust Fetching)
-    Description: Corrected version with a safer module fetching function.
+    Application Core: Main.luau (V2.2 - Debug Enabled)
+    Description: Loads each dependency individually and reports the status
+    to pinpoint exactly which module is failing to load.
 ]]
 
 local Dependencies = {
@@ -12,7 +13,6 @@ local Dependencies = {
     NotificationManager = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/NotificationManager.luau"
 }
 
--- [FIXED] Using the new, robust fetchModule function
 local function fetchModule(url)
     local success, content = pcall(game.HttpGet, game, url)
     if not success or not content then
@@ -35,32 +35,43 @@ end
 local MainApp = {}
 
 function MainApp:Init()
-    local Window = fetchModule(Dependencies.Window)
-    local Button = fetchModule(Dependencies.Button)
-    local Input = fetchModule(Dependencies.Input)
-    local Toggle = fetchModule(Dependencies.Toggle)
-    local Dragger = fetchModule(Dependencies.Dragger)
-    local NotificationManager = fetchModule(Dependencies.NotificationManager)
-    
-    if not (Window and Button and Input and Toggle and Dragger and NotificationManager) then
+    -- [NEW] Debug-enabled dependency loading
+    print("MainApp: Loading dependencies...")
+    local Modules = {}
+    local allLoaded = true
+    for name, url in pairs(Dependencies) do
+        local module = fetchModule(url)
+        if module then
+            print("  - Successfully loaded:", name)
+            Modules[name] = module
+        else
+            warn("  - CRITICAL FAILURE: Could not load:", name, "from", url)
+            allLoaded = false
+            break -- Stop on the first failure
+        end
+    end
+
+    if not allLoaded then
         warn("MainApp: A critical dependency failed to load. Aborting.")
         return
     end
+    print("MainApp: All dependencies loaded successfully.")
 
-    local Notifier = NotificationManager.new()
+    -- From here, use the 'Modules' table instead of individual variables
+    local Notifier = Modules.NotificationManager.new()
 
-    local mainWindow = Window.new({
+    local mainWindow = Modules.Window.new({
         Title = "Project Soulja - Full UI",
         Size = Vector2.new(520, 420)
     })
     
-    Dragger.new(mainWindow.Frame, mainWindow.Header)
+    Modules.Dragger.new(mainWindow.Frame, mainWindow.Header)
 
-    local scriptInput = Input.new({
+    local scriptInput = Modules.Input.new({
         PlaceholderText = "print('Hello, World!')"
     })
 
-    local autoExecute = Toggle.new({
+    local autoExecute = Modules.Toggle.new({
         Text = "Auto-Execute",
         Default = true,
         Callback = function(value)
@@ -68,7 +79,7 @@ function MainApp:Init()
         end
     })
     
-    local executeButton = Button.new({
+    local executeButton = Modules.Button.new({
         Text = "Execute",
         Callback = function()
             local text = scriptInput:GetText()
