@@ -1,8 +1,6 @@
 --[[
     Module: loader.luau (V4.1)
     Description: A production-ready UI library for creating modern, animated loaders.
-    This script should be hosted on GitHub and required by a manager script.
-    It exposes a single function: Loader.new(title, subtitle), which returns a UI instance API.
 ]]
 
 local TweenService = game:GetService("TweenService")
@@ -24,7 +22,6 @@ local ICONS = {
     Success = "✔ ", Error = "✖ ", Info = "⟳ ", Neutral = "» "
 }
 
--- The core constructor function
 function Loader.new(title, subtitle)
     if game:GetService("CoreGui"):FindFirstChild("LoaderScreenGui_V4") then
         game:GetService("CoreGui"):FindFirstChild("LoaderScreenGui_V4"):Destroy()
@@ -44,7 +41,6 @@ function Loader.new(title, subtitle)
     mainFrame.BorderSizePixel = 0
     mainFrame.Parent = screenGui
 
-    -- UI Elements
     Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0, 8)
     local accentBar = Instance.new("Frame", mainFrame)
     accentBar.Size = UDim2.new(1, 0, 0, 4)
