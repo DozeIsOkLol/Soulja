@@ -1,6 +1,6 @@
 --[[
-    Module: loader.luau (V4.1)
-    Description: A production-ready UI library for creating modern, animated loaders.
+    Module: loader.luau (V4.2 - Final)
+    Fix: Added DisplayOrder to ensure it renders on top of other UI.
 ]]
 
 local TweenService = game:GetService("TweenService")
@@ -31,6 +31,7 @@ function Loader.new(title, subtitle)
     screenGui.Name = "LoaderScreenGui_V4"
     screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
     screenGui.ResetOnSpawn = false
+    screenGui.DisplayOrder = 99999 -- [FIX] Force loader to draw on top
 
     local mainFrame = Instance.new("Frame")
     mainFrame.Name = "MainFrame"
@@ -82,9 +83,7 @@ function Loader.new(title, subtitle)
     local MAX_MESSAGES = 7
 
     function publicMethods:AddLabel(text, statusType)
-        if #activeMessages >= MAX_MESSAGES then
-            table.remove(activeMessages, 1):Destroy()
-        end
+        if #activeMessages >= MAX_MESSAGES then table.remove(activeMessages, 1):Destroy() end
         local statusLabel = Instance.new("TextLabel")
         statusLabel.Size = UDim2.new(1, -10, 0, 16); statusLabel.Text = (ICONS[statusType] or "") .. text
         statusLabel.Font = Enum.Font.Gotham; statusLabel.TextColor3 = Palette[statusType] or Palette.Info
