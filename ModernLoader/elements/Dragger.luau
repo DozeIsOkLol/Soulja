@@ -1,6 +1,5 @@
 --[[
-    Element: Dragger.luau (V1.0 - Production)
-    Description: A reusable utility to make any GUI object draggable.
+    Element: Dragger.luau (V1.1 - Verified Correct)
 ]]
 
 local UserInputService = game:GetService("UserInputService")
