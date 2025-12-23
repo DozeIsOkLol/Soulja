@@ -1,6 +1,6 @@
 --[[
-    Application Core: Main.luau (V4.0 - Arceney Architecture)
-    Description: Assembles a full, multi-tab application.
+    Application Core: Main.luau (V4.1 - Corrected)
+    Description: Assembles a full, multi-tab application. Fixed a syntax error.
 ]]
 
 -- Add the new dependencies
@@ -15,16 +15,28 @@ local Dependencies = {
     TabController = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/TabController.luau"
 }
 
--- (Your fetchModule function remains the same)
-local function fetchModule(url) ... end
+-- [FIXED] The complete, working fetchModule function
+local function fetchModule(url)
+    local success, content = pcall(game.HttpGet, game, url)
+    if not success or not content then warn("FETCH FAILED:", url, content); return nil end
+    local compiledFunc, compileError = loadstring(content)
+    if not compiledFunc then warn("COMPILE FAILED:", url, compileError); return nil end
+    local success, result = pcall(compiledFunc)
+    if not success then warn("EXECUTION FAILED:", url, result); return nil end
+    return result
+end
 
 local MainApp = {}
+
 function MainApp:Init()
     -- 1. Load all modules
     local Modules = {}
     for name, url in pairs(Dependencies) do
         local module = fetchModule(url)
-        if not module then warn("MainApp: CRITICAL FAILURE loading dependency:", name); return end
+        if not module then
+            warn("MainApp: CRITICAL FAILURE loading dependency:", name, "from", url, ". Aborting.")
+            return
+        end
         Modules[name] = module
     end
 
@@ -38,7 +50,8 @@ function MainApp:Init()
     tabContainer.Size = UDim2.new(1, 0, 0, 35)
     tabContainer.Position = UDim2.fromOffset(0, 30)
     tabContainer.BackgroundTransparency = 1
-    local tabLayout = Instance.new("UIListLayout", tabContainer); tabLayout.FillDirection = Enum.FillDirection.Horizontal
+    local tabLayout = Instance.new("UIListLayout", tabContainer)
+    tabLayout.FillDirection = Enum.FillDirection.Horizontal
 
     local contentContainer = Instance.new("Frame", mainWindow.Frame)
     contentContainer.Size = UDim2.new(1, -20, 1, -85)
@@ -49,8 +62,12 @@ function MainApp:Init()
     local tabController = Modules.TabController.new(tabContainer, contentContainer)
 
     -- 5. Build the Executor Tab
-    local executorPage = Instance.new("Frame"); executorPage.Size = UDim2.fromScale(1,1); executorPage.BackgroundTransparency = 1
-    local executorLayout = Instance.new("UIListLayout", executorPage); executorLayout.Padding = UDim.new(0, 10)
+    local executorPage = Instance.new("Frame")
+    executorPage.Name = "ExecutorPage"
+    executorPage.Size = UDim2.fromScale(1, 1)
+    executorPage.BackgroundTransparency = 1
+    local executorLayout = Instance.new("UIListLayout", executorPage)
+    executorLayout.Padding = UDim.new(0, 10)
     
     local scriptEditor = Modules.Editor.new({ PlaceholderText = "-- Welcome to Project Soulja" })
     scriptEditor.Frame.Size = UDim2.new(1, 0, 1, -50) -- Make room for button
@@ -60,8 +77,12 @@ function MainApp:Init()
     executeButton.Frame.Parent = executorPage
 
     -- 6. Build the Settings Tab
-    local settingsPage = Instance.new("Frame"); settingsPage.Size = UDim2.fromScale(1,1); settingsPage.BackgroundTransparency = 1
-    local settingsLayout = Instance.new("UIListLayout", settingsPage); settingsLayout.Padding = UDim.new(0, 10)
+    local settingsPage = Instance.new("Frame")
+    settingsPage.Name = "SettingsPage"
+    settingsPage.Size = UDim2.fromScale(1, 1)
+    settingsPage.BackgroundTransparency = 1
+    local settingsLayout = Instance.new("UIListLayout", settingsPage)
+    settingsLayout.Padding = UDim.new(0, 10)
     
     local autoAttachToggle = Modules.Toggle.new({ Text = "Auto Attach", Default = true })
     autoAttachToggle.Frame.Parent = settingsPage
