@@ -1,36 +1,58 @@
--- A conceptual Main.luau
+--[[
+    Application Core: Main.luau
+    Description: Fetches all necessary UI elements and managers, and then
+    assembles the main application window and its functionality.
+]]
 
--- Fetch all the UI elements your main app needs
-local Window = fetchModule("https://raw.githubusercontent.com/DozeIsOkLol/Soulja/refs/heads/main/ModernLoader/elements/Window.luau")()
-local Button = fetchModule("https://raw.githubusercontent.com/DozeIsOkLol/Soulja/refs/heads/main/ModernLoader/elements/Button.luau")()
-local Dragger = fetchModule("https://raw.githubusercontent.com/DozeIsOkLol/Soulja/refs/heads/main/ModernLoader/elements/Dragger.luau")()
-local NotificationManager = fetchModule("https://raw.githubusercontent.com/DozeIsOkLol/Soulja/refs/heads/main/ModernLoader/NotificationManager.luau")()
+local Dependencies = {
+    Window = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Window.luau",
+    Button = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Button.luau",
+    NotificationManager = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/NotificationManager.luau"
+}
+
+local function fetchModule(url)
+    local success, content = pcall(game.HttpGet, game, url)
+    if not success or not content then return nil end
+    local success, result = pcall(loadstring(content))
+    if not success or not result then return nil end
+    return result
+end
 
 local MainApp = {}
 
 function MainApp:Init()
-    -- 1. Create the main window
-    local mainWindow = Window.new({
-        Title = "Project Soulja",
-        Size = Vector2.new(500, 350)
-    })
+    local Window = fetchModule(Dependencies.Window)
+    local Button = fetchModule(Dependencies.Button)
+    local NotificationManager = fetchModule(Dependencies.NotificationManager)
     
-    -- 2. Make it draggable
-    Dragger.new(mainWindow.Frame, mainWindow.Header)
+    if not (Window and Button and NotificationManager) then
+        warn("MainApp: A critical dependency failed to load. Aborting.")
+        return
+    end
 
-    -- 3. Create a notification manager instance
     local Notifier = NotificationManager.new()
 
-    -- 4. Add a button to the window
-    local executeButton = Button.new({
-        Text = "Execute",
+    local mainWindow = Window.new({
+        Title = "Project Soulja",
+        Size = Vector2.new(520, 380)
+    })
+    
+    local testButton = Button.new({
+        Text = "Show Notification",
         Callback = function()
-            print("Execute button clicked!")
-            Notifier:Send("Success", "Script executed!")
+            Notifier:Send("Info", "This is a test notification from the main application!")
         end
     })
     
-    mainWindow:Add(executeButton) -- Add the button to the window's content area
+    local anotherButton = Button.new({
+        Text = "Another Button",
+        Callback = function()
+            Notifier:Send("Success", "You clicked the other button!")
+        end
+    })
+
+    mainWindow:Add(testButton)
+    mainWindow:Add(anotherButton)
 end
 
 return MainApp
