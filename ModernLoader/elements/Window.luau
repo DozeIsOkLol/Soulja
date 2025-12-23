@@ -1,6 +1,6 @@
 --[[
-    Element: Window.luau (V2 - Refactored)
-    Description: A window component, now refactored to use the standalone Dragger module.
+    Element: Window.luau (V2.1 - Final)
+    Fix: Creates its own ScreenGui with DisplayOrder to render on top.
 ]]
 
 local Window = {}
@@ -12,6 +12,13 @@ function Window.new(options)
     self.Title = options.Title or "Window"
     self.Size = options.Size or Vector2.new(500, 350)
 
+    -- Create a ScreenGui container for the window
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "MainAppScreenGui"
+    screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
+    screenGui.ResetOnSpawn = false
+    screenGui.DisplayOrder = 99999 -- [FIX] Force main app to draw on top
+
     self.Frame = Instance.new("Frame")
     self.Frame.Name = "WindowFrame"
     self.Frame.Size = UDim2.fromOffset(self.Size.X, self.Size.Y)
@@ -19,6 +26,7 @@ function Window.new(options)
     self.Frame.AnchorPoint = Vector2.new(0.5, 0.5)
     self.Frame.BackgroundColor3 = Color3.fromRGB(30, 32, 36)
     self.Frame.BorderSizePixel = 0
+    self.Frame.Parent = screenGui -- Parent the Frame to the ScreenGui
     
     Instance.new("UICorner", self.Frame).CornerRadius = UDim.new(0, 6)
     
@@ -50,7 +58,8 @@ function Window.new(options)
     self.Layout.Padding = UDim.new(0, 10)
     self.Layout.SortOrder = Enum.SortOrder.LayoutOrder
 
-    self.Frame.Parent = game:GetService("CoreGui")
+    -- Parent the ScreenGui to CoreGui at the end
+    screenGui.Parent = game:GetService("CoreGui")
     return self
 end
 
