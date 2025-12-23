@@ -1,22 +1,21 @@
 --[[
-    Title: Project Soulja - UI Library (V1.0)
-    Description: The main controller for the modular UI library. It fetches all
-    necessary components from the 'elements' folder and provides the public API.
+    Title: Project Soulja - UI Library (V1.1 - Feature Rich)
+    Description: The main controller for the modular UI library. It now fetches
+    all the new components for tabs, labels, and sliders.
 ]]
 
 local Library = {
-    _version = "1.0",
-    _components = {} -- Private table to hold the loaded component modules
+    _version = "1.1",
+    _components = {}
 }
 Library.__index = Library
 
--- URLs for all the modular components the library depends on.
 local Dependencies = {
     Window = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Window.luau",
     Button = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Button.luau",
     Input = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Input.luau",
     Toggle = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Toggle.luau",
-    Dragger = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Dragger.luau"
+    Dragger = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Dragger.luau",
     Tab = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Tab.luau",
     TabGroup = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/TabGroup.luau",
     Label = "https://raw.githubusercontent.com/DozeIsOkLol/Soulja/main/ModernLoader/elements/Label.luau",
@@ -33,7 +32,6 @@ local function fetchModule(url)
     return result
 end
 
--- Pre-load all components when the library is first required.
 for name, url in pairs(Dependencies) do
     Library._components[name] = fetchModule(url)
     if not Library._components[name] then
@@ -41,17 +39,10 @@ for name, url in pairs(Dependencies) do
     end
 end
 
--- =============================================================================
--- Public API: This is what the user interacts with.
--- =============================================================================
-
 function Library:CreateWindow(options)
     if not self._components.Window then return nil end
-    -- Pass a reference to the main library into the window so it can create elements.
     local window = self._components.Window.new(options, self)
     return window
 end
-
--- You can add other top-level functions here if needed, like a NotificationManager.
 
 return Library
